@@ -12,6 +12,7 @@ import {
 import Logo from './Logo';
 import MenuToggle from './MenuToggle';
 import ColorModeToggle from './ColorModeToggle';
+import CartWidget from './CartWidget';
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -64,6 +65,7 @@ const NavBar = () => {
             <Button variant='ghost' colorScheme='red' width={{ base: 'full', md: 'auto' }}>
               Contacto
             </Button>
+            <CartWidget />
             <Box onClick={toggleColorMode}>
               <ColorModeToggle isDark={isDark} toggleColorModeIcon={toggleColorModeIcon} />
             </Box>
