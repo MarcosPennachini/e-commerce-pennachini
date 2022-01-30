@@ -1,9 +1,10 @@
 import { Container, Flex, SimpleGrid, Text, useColorModeValue, useToast } from '@chakra-ui/react';
-import React, {useState} from 'react';
+import React, { useState } from 'react';
+import Item from './Item';
 import ItemCount from './ItemCount';
 
 const ItemListContainer = ({ greeting }) => {
-  const itemBackground = useColorModeValue('gray.300', 'gray.700');
+  const itemBackground = useColorModeValue('gray.50', 'gray.700');
   const toast = useToast();
 
   const onAdd = (cant) => {
@@ -14,8 +15,8 @@ const ItemListContainer = ({ greeting }) => {
       status: 'success',
       duration: 5000,
       isClosable: true,
-    })
-  }
+    });
+  };
 
   return (
     <section>
@@ -31,28 +32,34 @@ const ItemListContainer = ({ greeting }) => {
           {greeting}
         </Text>
         <SimpleGrid minChildWidth='300px' spacing={10}>
-          <Flex bg={itemBackground} height='200px' borderRadius={4} direction='column-reverse'>
-            <ItemCount initial={1} stock={10} onAdd={onAdd}/>
+          <Flex bg={itemBackground} borderRadius={4} borderWidth={1} direction='column'>
+            <Item />
+            <ItemCount initial={1} stock={10} onAdd={onAdd} />
           </Flex>
-          <Flex bg={itemBackground} height='200px' borderRadius={4} direction='column-reverse'>
-            <ItemCount initial={1} stock={0} onAdd={onAdd}/>
+          <Flex bg={itemBackground} borderRadius={4} borderWidth={1} direction='column'>
+            <Item />
+            <ItemCount initial={1} stock={0} onAdd={onAdd} />
           </Flex>
-          <Flex bg={itemBackground} height='200px' borderRadius={4} direction='column-reverse'>
-            <ItemCount initial={1} stock={20} onAdd={onAdd}/>
+          <Flex bg={itemBackground} borderRadius={4} borderWidth={1} direction='column'>
+            <Item />
+            <ItemCount initial={1} stock={20} onAdd={onAdd} />
           </Flex>
-          <Flex bg={itemBackground} height='200px' borderRadius={4} direction='column-reverse'>
-            <ItemCount initial={1} stock={8} onAdd={onAdd}/>
+          <Flex bg={itemBackground} borderRadius={4} borderWidth={1} direction='column'>
+            <Item />
+            <ItemCount initial={1} stock={8} onAdd={onAdd} />
           </Flex>
-          <Flex bg={itemBackground} height='200px' borderRadius={4} direction='column-reverse'>
-            <ItemCount initial={1} stock={25} onAdd={onAdd}/>
+          <Flex bg={itemBackground} borderRadius={4} borderWidth={1} direction='column'>
+            <Item />
+            <ItemCount initial={1} stock={25} onAdd={onAdd} />
           </Flex>
-          <Flex bg={itemBackground} height='200px' borderRadius={4} direction='column-reverse'>
-            <ItemCount initial={1} stock={16} onAdd={onAdd}/>
+          <Flex bg={itemBackground} borderRadius={4} borderWidth={1} direction='column'>
+            <Item />
+            <ItemCount initial={1} stock={16} onAdd={onAdd} />
           </Flex>
-          <Flex bg={itemBackground} height='200px' borderRadius={4} direction='column-reverse'>
-            <ItemCount initial={1} stock={14} onAdd={onAdd}/>
+          <Flex bg={itemBackground} borderRadius={4} borderWidth={1} direction='column'>
+            <Item />
+            <ItemCount initial={1} stock={14} onAdd={onAdd} />
           </Flex>
-          
         </SimpleGrid>
       </Container>
     </section>
