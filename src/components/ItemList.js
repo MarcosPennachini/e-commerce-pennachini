@@ -28,7 +28,7 @@ const ItemList = ({ items }) => {
             price={item.price}
             pictureUrl={item.pictureUrl}
           />
-          <ItemCount initial={1} stock={10} onAdd={onAdd} />
+          <ItemCount initial={1} stock={item.stock} onAdd={onAdd} />
         </Flex>
       ))}
     </SimpleGrid>
