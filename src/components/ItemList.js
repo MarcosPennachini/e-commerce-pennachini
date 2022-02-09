@@ -23,6 +23,7 @@ const ItemList = ({ items }) => {
       {items.map((item) => (
         <Flex key={item.id} bg={itemBackground} borderRadius={4} borderWidth={1} direction='column'>
           <Item
+            id={item.id}
             title={item.title}
             description={item.description}
             price={item.price}

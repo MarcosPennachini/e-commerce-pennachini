@@ -3,12 +3,12 @@ import {
   Container,
   Flex,
   Stack,
-  Link,
   Box,
   Button,
   useColorMode,
   useColorModeValue,
 } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
 import Logo from './Logo';
 import MenuToggle from './MenuToggle';
 import ColorModeToggle from './ColorModeToggle';
@@ -56,9 +56,11 @@ const NavBar = () => {
             justifyContent={{ base: 'center', md: 'space-between' }}
             direction={{ base: 'column', md: 'row' }}
           >
-            <Button variant='ghost' colorScheme='red' width={{ base: 'full', md: 'auto' }}>
-              Productos
-            </Button>
+            <Link to='/'>
+              <Button variant='ghost' colorScheme='red' width={{ base: 'full', md: 'auto' }}>
+                Productos
+              </Button>
+            </Link>
             <Button variant='ghost' colorScheme='red' width={{ base: 'full', md: 'auto' }}>
               ¿Cómo comprar?
             </Button>

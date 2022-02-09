@@ -1,9 +1,13 @@
-import { Badge, Box, HStack, Image, Text, useToast } from '@chakra-ui/react';
-import React from 'react';
+import { Badge, Box, Image, Stack, Text, useToast } from '@chakra-ui/react';
+import React, { useEffect, useMemo, useState } from 'react';
 import ItemCount from './ItemCount';
+// import getProductById from '../helpers/GetProductById';
+//import { products } from '../products.js';
 
 const ItemDetail = ({ item }) => {
-  const product = item;
+  //const [product] = item;
+  // const [product, setProduct] = useState()
+  console.log(item);
   const toast = useToast();
 
   const onAdd = (cant) => {
@@ -17,10 +21,42 @@ const ItemDetail = ({ item }) => {
     });
   };
 
+  // const getItem = (id) => {
+  //   products
+  //     .then((result) => {
+  //       // console.log(result);
+  //       const [data] = result.filter((item) => item.id === id);
+  //       // console.log(data);
+  //       return data;
+  //     })
+  //     .catch((error) => {
+  //       console.error('Se produjo un error al obtener el Item ', error);
+  //     });
+  // }
+
+  //const product = useMemo(() => getProductById(item), [item]);
+
+  // useEffect(() => {
+  //   products
+  //     .then((result) => {
+  //       // console.log(result);
+  //       const [data] = result.filter((item) => item.id === id);
+  //       // console.log(data);
+  //       setProduct(data);
+  //     })
+  //     .catch((error) => {
+  //       console.error('Se produjo un error al obtener el Item ', error);
+  //     });
+  // }, [id])
+
+  console.log(product)
+  
+
   return (
-    <HStack w='full' px={4} py={3} overflow='hidden'>
+    <Stack w='full' px={4} py={3} overflow='hidden' direction={{ base: 'column', md:'row' }}>
       <Box w='full'>
-        <Image src={product.pictureUrl} alt='Imágen de producto' backgroundColor='gray.100' />
+        <Image src={product.pictureUrl} alt='Imágen de producto' style={{backgroundImage: 'radial-gradient( circle farthest-corner at 1.3% 2.8%,  rgba(239,249,249,1) 0%, rgba(182,199,226,1) 100.2% )'}} />
+        
       </Box>
 
       <Box p={4} w='full'>
@@ -45,7 +81,7 @@ const ItemDetail = ({ item }) => {
 
         <ItemCount initial={1} stock={product.stock} onAdd={onAdd} />
       </Box>
-    </HStack>
+    </Stack>
   )
 };
 
