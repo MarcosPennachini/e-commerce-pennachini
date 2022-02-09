@@ -1,7 +1,8 @@
-import { Container, Text } from '@chakra-ui/react';
+import { Container } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import { products } from '../products';
 import ItemList from './ItemList';
+import ItemListHero from './ItemListHero';
 import SkeletonCards from './SkeletonCard';
 
 const ItemListContainer = ({ greeting }) => {
@@ -19,8 +20,10 @@ const ItemListContainer = ({ greeting }) => {
 
   return (
     <section>
-      <Container maxW='container.lg' padding={[1, 4]}>
-        <Text
+      <ItemListHero greeting={greeting}/>
+
+      <Container id='itemListContainer' maxW='container.lg' px={[1, 4]} py={[4, 6]}>
+        {/* <Text
           mb={10}
           bgGradient='linear(to-l, #0093E9, #80D0C7)'
           bgClip='text'
@@ -29,7 +32,7 @@ const ItemListContainer = ({ greeting }) => {
           fontWeight='900'
         >
           {greeting}
-        </Text>
+        </Text> */}
         {loading ? <SkeletonCards /> : <ItemList items={items} />}
       </Container>
     </section>

@@ -34,7 +34,7 @@ const NavBar = () => {
     <Container maxW='container.xl' padding={0}>
       <Flex
         w='full'
-        mb={8}
+        mb={[0, 2]}
         p={8}
         alignItems='center'
         justifyContent='space-between'

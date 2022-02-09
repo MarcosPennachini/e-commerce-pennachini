@@ -9,6 +9,11 @@ import darthMaul from './assets/img/darth_maul.png';
 import darkseid from './assets/img/darkseid.png';
 import batman from './assets/img/batman.png';
 import ahsoka from './assets/img/ashoka.png';
+import levi from './assets/img/levi.png';
+import dexter from './assets/img/dexter.png'
+import deadpool from './assets/img/deadpool.png'
+import duncan from './assets/img/duncan.png'
+import emmet from './assets/img/emmet.png'
 
 const array_products = [
   {
@@ -109,6 +114,51 @@ const array_products = [
     price: 15100,
     pictureUrl: grogu,
     stock: 7
+  },
+  {
+    id: '12',
+    title: 'LEVI - ATTACK ON TITAN',
+    description:
+      'Pop! Levi is armed and ready to lead the next mission in your Attack on Titan collection. Levi Ackerman is a skilled soldier and dedicated to ending the reign of terror the Titans unleash upon the world. Vinyl figure is approximately 4.15-inches tall.',
+    price: 10750,
+    pictureUrl: levi,
+    stock: 3
+  },
+  {
+    id: '13',
+    title: 'DEXTER WITH REMOTE - DEXTER S LABORATORY',
+    description:
+      'The USAs fate is in, kid-genius, Dexter s hands in this 90s Cartoon Network show. Bring Pop! Dexter with Remote into your Dexter s Laboratory collection and he will create all kinds of experiments and gadgets when you are not looking. Vinyl figure is approximately 3.25-inches tall.',
+    price: 7540,
+    pictureUrl: dexter,
+    stock: 5
+  },
+  {
+    id: '14',
+    title: 'SHERIFF DEADPOOL RIDING HORSEY',
+    description:
+      'Giddy up! Just when you thought the merc with the mouth coul not get any cooler he rides in on a horse. (At least a coin operated one.) This Funko exclusive Pop! Ride Sheriff Deadpool Riding Horsey is irresistible to your Marvel collection. Vinyl bobblehead is approximately 4.75-inches tall.',
+    price: 7999,
+    pictureUrl: deadpool,
+    stock: 2
+  },
+  {
+    id: '15',
+    title: 'DUNCAN IDAHO - DUNE',
+    description:
+      'The swordmaster, Duncan Idaho, is searching to protect Duke Atreides son, Paul. Help Pop! Duncan Idaho find Paul in your Dune collection so that he may teach him the art of war. Vinyl figure is approximately 4.25-inches tall.',
+    price: 8200,
+    pictureUrl: duncan,
+    stock: 6
+  },
+  {
+    id: '16',
+    title: 'DOC WITH HELMET - BACK TO THE FUTURE',
+    description:
+      'Back to the Future celebrates its 35th anniversary, Doc Brown and Marty McFly come together for the festivities as a collection of Pop! Vinyls. Bring back one of the best parts of the past with Pop! Doc Brown with helmet. Collectible is approximately 4.75-inches tall',
+    price: 6899,
+    pictureUrl: emmet,
+    stock: 12
   },
 ];
 

@@ -1,6 +1,5 @@
 import {
   Box,
-  Flex,
   SimpleGrid,
   Skeleton,
   SkeletonCircle,
@@ -10,10 +9,9 @@ import {
 import React from 'react';
 
 const SkeletonCards = () => {
-  console.log('Se cargó el componente');
   return (
     <SimpleGrid minChildWidth='300px' spacing={10}>
-      <Box padding='6' boxShadow='lg' >
+      <Box padding='6' boxShadow='sm' >
         <SkeletonCircle size='200' />
         <SkeletonText my='4' />
         <Stack>
@@ -21,7 +19,7 @@ const SkeletonCards = () => {
           <Skeleton height='15px' />
         </Stack>
       </Box>
-      <Box padding='6' boxShadow='lg' >
+      <Box padding='6' boxShadow='sm' >
         <SkeletonCircle size='200' />
         <SkeletonText my='4' />
         <Stack>
@@ -29,7 +27,7 @@ const SkeletonCards = () => {
           <Skeleton height='15px' />
         </Stack>
       </Box>
-      <Box padding='6' boxShadow='lg' >
+      <Box padding='6' boxShadow='sm' >
         <SkeletonCircle size='200' />
         <SkeletonText my='4' />
         <Stack>
@@ -37,7 +35,7 @@ const SkeletonCards = () => {
           <Skeleton height='15px' />
         </Stack>
       </Box>
-      <Box padding='6' boxShadow='lg' >
+      <Box padding='6' boxShadow='sm' >
         <SkeletonCircle size='200' />
         <SkeletonText my='4' />
         <Stack>
@@ -45,7 +43,7 @@ const SkeletonCards = () => {
           <Skeleton height='15px' />
         </Stack>
       </Box>
-      <Box padding='6' boxShadow='lg' >
+      <Box padding='6' boxShadow='sm' >
         <SkeletonCircle size='200' />
         <SkeletonText my='4' />
         <Stack>
@@ -53,7 +51,7 @@ const SkeletonCards = () => {
           <Skeleton height='15px' />
         </Stack>
       </Box>
-      <Box padding='6' boxShadow='lg' >
+      <Box padding='6' boxShadow='sm' >
         <SkeletonCircle size='200' />
         <SkeletonText my='4' />
         <Stack>
@@ -61,7 +59,7 @@ const SkeletonCards = () => {
           <Skeleton height='15px' />
         </Stack>
       </Box>
-      <Box padding='6' boxShadow='md' >
+      <Box padding='6' boxShadow='sm' >
         <SkeletonCircle size='200' />
         <SkeletonText my='4' />
         <Stack>
@@ -69,7 +67,7 @@ const SkeletonCards = () => {
           <Skeleton height='15px' />
         </Stack>
       </Box>
-      <Box padding='6' boxShadow='lg' >
+      <Box padding='6' boxShadow='sm' >
         <SkeletonCircle size='200' />
         <SkeletonText my='4' />
         <Stack>
