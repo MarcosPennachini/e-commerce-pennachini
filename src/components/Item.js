@@ -1,8 +1,9 @@
 import { Badge, Box, Button, Image, Text } from '@chakra-ui/react';
-import { AiOutlineArrowRight } from 'react-icons/ai'
+import { AiOutlineArrowRight } from 'react-icons/ai';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const Item = ({title, description, price, pictureUrl}) => {
+const Item = ({ title, id, price, pictureUrl }) => {
   return (
     <Box w='full' px={4} py={3} overflow='hidden'>
       <Image src={pictureUrl} alt='Imágen de producto' borderRadius={4} />
@@ -22,9 +23,17 @@ const Item = ({title, description, price, pictureUrl}) => {
           {`$${parseFloat(price)}`}
         </Text>
 
-        <Button rightIcon={<AiOutlineArrowRight />} colorScheme='blue' variant='outline' size='xs' mt='2'>
-          Ver mas
-        </Button>
+        <Link to={`/item/${id}`}>
+          <Button
+            rightIcon={<AiOutlineArrowRight />}
+            colorScheme='blue'
+            variant='outline'
+            size='xs'
+            mt='2'
+          >
+            Ver mas
+          </Button>
+        </Link>
       </Box>
     </Box>
   );
