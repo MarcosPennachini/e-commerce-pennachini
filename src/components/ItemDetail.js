@@ -1,13 +1,9 @@
-import { Badge, Box, Image, Stack, Text, useToast } from '@chakra-ui/react';
-import React, { useEffect, useMemo, useState } from 'react';
+import { Badge, Box, Image, Stack, Text, useToast, useColorModeValue } from '@chakra-ui/react';
 import ItemCount from './ItemCount';
-// import getProductById from '../helpers/GetProductById';
-//import { products } from '../products.js';
 
 const ItemDetail = ({ item }) => {
-  //const [product] = item;
-  // const [product, setProduct] = useState()
-  console.log(item);
+  const backgroundColor = useColorModeValue('radial-gradient( circle farthest-corner at 18.7% 37.8%,  rgba(250,250,250,1) 0%, rgba(225,234,238,1) 90% )', 'radial-gradient( circle farthest-corner at 32.7% 82.7%,  rgba(173,0,171,1) 8.3%, rgba(15,51,92,1) 79.4% )');
+  const [product] = item;
   const toast = useToast();
 
   const onAdd = (cant) => {
@@ -21,42 +17,10 @@ const ItemDetail = ({ item }) => {
     });
   };
 
-  // const getItem = (id) => {
-  //   products
-  //     .then((result) => {
-  //       // console.log(result);
-  //       const [data] = result.filter((item) => item.id === id);
-  //       // console.log(data);
-  //       return data;
-  //     })
-  //     .catch((error) => {
-  //       console.error('Se produjo un error al obtener el Item ', error);
-  //     });
-  // }
-
-  //const product = useMemo(() => getProductById(item), [item]);
-
-  // useEffect(() => {
-  //   products
-  //     .then((result) => {
-  //       // console.log(result);
-  //       const [data] = result.filter((item) => item.id === id);
-  //       // console.log(data);
-  //       setProduct(data);
-  //     })
-  //     .catch((error) => {
-  //       console.error('Se produjo un error al obtener el Item ', error);
-  //     });
-  // }, [id])
-
-  console.log(product)
-  
-
   return (
     <Stack w='full' px={4} py={3} overflow='hidden' direction={{ base: 'column', md:'row' }}>
       <Box w='full'>
-        <Image src={product.pictureUrl} alt='Imágen de producto' style={{backgroundImage: 'radial-gradient( circle farthest-corner at 1.3% 2.8%,  rgba(239,249,249,1) 0%, rgba(182,199,226,1) 100.2% )'}} />
-        
+        <Image src={product.pictureUrl} alt='Imágen de producto' bgImage={backgroundColor} borderRadius={6} />
       </Box>
 
       <Box p={4} w='full'>

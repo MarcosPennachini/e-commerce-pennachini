@@ -31,7 +31,7 @@ const NavBar = () => {
   };
 
   return (
-    <Container maxW='container.lg' padding={0}>
+    <Container maxW='container.xl' padding={0}>
       <Flex
         w='full'
         mb={8}
