@@ -41,6 +41,8 @@ const ItemListContainer = ({ greeting, category }) => {
             .catch((error) => console.log('Se produjo un error :(', error))
             .finally(() => setLoading(false));
           break;
+        default:
+          break;
       } 
     }
   }, [category, id]);

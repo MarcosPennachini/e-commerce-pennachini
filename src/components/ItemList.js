@@ -1,5 +1,5 @@
 import { Flex, SimpleGrid, useColorModeValue, useToast } from '@chakra-ui/react';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Item from './Item';
 import ItemCount from './ItemCount';
 
@@ -20,14 +20,6 @@ const ItemList = ({ items}) => {
       isClosable: true,
     });
   };
-
-  // useEffect(() => {
-  //   if (categoryId === 1) {
-  //     setFilteredItems(items.filter((item) => item.category === 'Music&TV'));
-  //   } else if (categoryId === 2) {
-  //     setFilteredItems(items.filter((item) => item.category === 'Music'));
-  //   }
-  // }, [id])
   
 
   return (
