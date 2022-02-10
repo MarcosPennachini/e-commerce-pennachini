@@ -12,9 +12,9 @@ function App() {
           <Route path='/item/:id' element={<ItemDetailContainer />} />
           <Route
             path='/category/:id'
-            element={<ItemListContainer greeting='Tu mayor store de Funkos en un solo lugar' />}
+            element={<ItemListContainer greeting='Tu mayor store de Funkos en un solo lugar' category={true} />}
           />
-          <Route path='/' element={<ItemListContainer greeting='Tu mayor store de Funkos en un solo lugar' />} />
+          <Route path='/' element={<ItemListContainer greeting='Tu mayor store de Funkos en un solo lugar' category={false} />} />
         </Routes>
       </Router>
     </>

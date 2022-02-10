@@ -7,12 +7,18 @@ import {
   Button,
   useColorMode,
   useColorModeValue,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import Logo from './Logo';
 import MenuToggle from './MenuToggle';
 import ColorModeToggle from './ColorModeToggle';
 import CartWidget from './CartWidget';
+import { AiOutlineCaretDown } from 'react-icons/ai';
+import { FcClapperboard, FcSpeaker } from 'react-icons/fc';
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -57,13 +63,38 @@ const NavBar = () => {
             direction={{ base: 'column', md: 'row' }}
           >
             <Link to='/'>
-              <Button variant='ghost' colorScheme='red' width={{ base: 'full', md: 'auto' }}>
+              <Button
+                variant='ghost'
+                colorScheme='red'
+                width={{ base: 'full', md: 'auto' }}
+                title='Ver todos los productos'
+              >
                 Productos
               </Button>
             </Link>
-            <Button variant='ghost' colorScheme='red' width={{ base: 'full', md: 'auto' }}>
-              ¿Cómo comprar?
-            </Button>
+            <Menu>
+              <MenuButton
+                as={Button}
+                variant='ghost'
+                colorScheme='red'
+                width={{ base: 'full', md: 'auto' }}
+                rightIcon={<AiOutlineCaretDown />}
+              >
+                Categor&iacute;as
+              </MenuButton>
+              <MenuList width={{ base: 'full', md: 'auto' }}>
+                <Link to={`/category/1`}>
+                  <MenuItem>
+                    <FcClapperboard /> Pel&iacute;culas y TV
+                  </MenuItem>
+                </Link>
+                <Link to={`/category/2`}>
+                  <MenuItem>
+                    <FcSpeaker /> M&uacute;sica
+                  </MenuItem>
+                </Link>
+              </MenuList>
+            </Menu>
             <Button variant='ghost' colorScheme='red' width={{ base: 'full', md: 'auto' }}>
               Contacto
             </Button>
