@@ -1,38 +1,55 @@
 import { Container } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { products } from '../products';
 import ItemList from './ItemList';
 import ItemListHero from './ItemListHero';
 import SkeletonCards from './SkeletonCard';
 
-const ItemListContainer = ({ greeting }) => {
+const ItemListContainer = ({ greeting, category }) => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
+  const {id} = useParams();
 
   useEffect(() => {
-    products
-      .then((result) => {
-        setItems(result);
-      })
-      .catch((error) => console.log('Se produjo un error :(', error))
-      .finally(() => setLoading(false));
-  }, []);
+    if (!category) {
+      products
+        .then((result) => {
+            setItems(result);
+        })
+        .catch((error) => console.log('Se produjo un error :(', error))
+        .finally(() => setLoading(false));
+    } else {
+      switch (id) {
+        case '1':
+          products
+            .then((result) => {
+              const data = result.filter((item) => item.category === 'Movies&TV')
+              console.log('TV ', data);
+              setItems(data);
+            })
+            .catch((error) => console.log('Se produjo un error :(', error))
+            .finally(() => setLoading(false));
+          break;
+        case '2':
+          products
+            .then((result) => {
+              const data = result.filter((item) => item.category === 'Music')
+              console.log('Music ', data)
+              setItems(data);
+            })
+            .catch((error) => console.log('Se produjo un error :(', error))
+            .finally(() => setLoading(false));
+          break;
+      } 
+    }
+  }, [category, id]);
 
   return (
     <section>
       <ItemListHero greeting={greeting}/>
 
       <Container id='itemListContainer' maxW='container.lg' px={[1, 4]} py={[4, 6]}>
-        {/* <Text
-          mb={10}
-          bgGradient='linear(to-l, #0093E9, #80D0C7)'
-          bgClip='text'
-          textAlign='center'
-          fontSize='4xl'
-          fontWeight='900'
-        >
-          {greeting}
-        </Text> */}
         {loading ? <SkeletonCards /> : <ItemList items={items} />}
       </Container>
     </section>
