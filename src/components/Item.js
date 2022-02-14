@@ -27,11 +27,11 @@ const Item = ({ title, id, price, pictureUrl }) => {
           <Button
             rightIcon={<AiOutlineArrowRight />}
             colorScheme='blue'
-            variant='outline'
-            size='xs'
+            variant='ghost'
+            size='sm'
             mt='2'
           >
-            Ver mas
+            Ver detalle
           </Button>
         </Link>
       </Box>
