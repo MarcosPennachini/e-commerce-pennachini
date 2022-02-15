@@ -27,7 +27,7 @@ const ItemCount = ({ stock, initial, onAdd }) => {
   /** Reseteo estado cuando se dispara onAdd() */
   useEffect(() => {
     setCant(initial);
-  }, [onAdd]);
+  }, [onAdd, initial]);
 
   return (
     <Box w='full' px={4} py={3}>
