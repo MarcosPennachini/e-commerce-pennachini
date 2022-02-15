@@ -1,25 +1,25 @@
-import { Flex, SimpleGrid, useColorModeValue, useToast } from '@chakra-ui/react';
+import { Flex, SimpleGrid, useColorModeValue } from '@chakra-ui/react';
 import React from 'react';
 import Item from './Item';
-import ItemCount from './ItemCount';
+// import ItemCount from './ItemCount';
 
 const ItemList = ({ items}) => {
   const itemBackground = useColorModeValue('gray.50', 'gray.700');
-  const toast = useToast();
+  // const toast = useToast();
   // const [filteredItems, setFilteredItems] = useState([]);
   // const categoryId = id;
   // console.log(categoryId);
 
-  const onAdd = (cant) => {
-    console.log('Cantidad seleccionada: ' + cant);
-    toast({
-      title: 'Producto agregago',
-      description: 'Se ha agregado al carrito!',
-      status: 'success',
-      duration: 5000,
-      isClosable: true,
-    });
-  };
+  // const onAdd = (cant) => {
+  //   console.log('Cantidad seleccionada: ' + cant);
+  //   toast({
+  //     title: 'Producto agregago',
+  //     description: 'Se ha agregado al carrito!',
+  //     status: 'success',
+  //     duration: 5000,
+  //     isClosable: true,
+  //   });
+  // };
   
 
   return (
