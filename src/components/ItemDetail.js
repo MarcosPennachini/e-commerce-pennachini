@@ -1,6 +1,17 @@
-import { Badge, Box, Image, Stack, Text, useToast, useColorModeValue } from '@chakra-ui/react';
-import { useEffect, useState } from 'react';
+import {
+  Badge,
+  Box,
+  Image,
+  Stack,
+  Text,
+  Button,
+  useToast,
+  useColorModeValue,
+} from '@chakra-ui/react';
+import { useEffect, useState, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import ItemCount from './ItemCount';
+import { CartContext } from './context/CartContext';
 
 const ItemDetail = ({ item }) => {
   const backgroundColor = useColorModeValue(
@@ -10,9 +21,13 @@ const ItemDetail = ({ item }) => {
   const [product] = item;
   const toast = useToast();
   const [quantity, setQuantity] = useState(0);
+  const [isAdded, setIsAdded] = useState(false);
+  const { addItem } = useContext(CartContext);
 
   const onAdd = (cant) => {
     setQuantity(cant);
+    setIsAdded(true);
+    addItem(item, cant);
     toast({
       title: 'Producto agregago',
       description: 'Se ha agregado al carrito!',
@@ -21,7 +36,7 @@ const ItemDetail = ({ item }) => {
       isClosable: true,
     });
   };
-  
+
   /** Logueo la cantidad cuando se dispara evento click en itemCount */
   useEffect(() => {
     console.log('Cantidad seleccionada: ', quantity);
@@ -57,8 +72,26 @@ const ItemDetail = ({ item }) => {
         </Text>
 
         <Text as='p'>{product.description}</Text>
-
-        <ItemCount initial={1} stock={product.stock} onAdd={onAdd} />
+        {isAdded ? (
+          <Link to='/cart'>
+            <Button
+              variant='solid'
+              bgGradient='linear(to-l, #fbab7e , #f7ce68)'
+              fontWeight='black'
+              color='white'
+              w='full'
+              my={3}
+              _hover={{
+                bgGradient: 'linear(to-r, #fbab7e, #f7ce68)',
+                boxShadow: 'md',
+              }}
+            >
+              Ver carrito
+            </Button>
+          </Link>
+        ) : (
+          <ItemCount initial={1} stock={product.stock} onAdd={onAdd} />
+        )}
       </Box>
     </Stack>
   );
