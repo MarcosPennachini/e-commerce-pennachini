@@ -14,24 +14,40 @@ export const CartProvider = ({children}) => {
     const [totalPrice, setTotalPrice] = useState(0);
 
     const addItem = (item, cant) => {
-        const index = isAdded(item);
+        const index = isInCart(item);
         if (index > -1) {
+            //Si el item ya está en el carrito
             let updatedITems = [...items];
             updatedITems[index].quantity += cant;
+            if (updatedITems[index].quantity > updatedITems[index].stock) {
+                throw new Error(`La cantidad elegida no puede superar el stock (${updatedITems[index].stock})`);
+            } else {
+                setItems(updatedITems);
+            }
         } else {
+            //Si el item no está en el carrito
             const newItem = {...item, quantity: cant};
             setItems(...items, newItem);
         }
     }
 
-    const isAdded = (newItem) => {
+    const removeItem = (itemToRemove) => {
+        const filteredItems = items.filter((item) => item.id != itemToRemove.id);
+        setItems(filteredItems);
+    }
+
+    const isInCart = (newItem) => {
         const itemFinded = items.find((i) => i.id === newItem.id);
         return items.indexOf(itemFinded);
     }
 
+    const clearCart = () => {
+        setItems([]);
+    }
+
     /** Get total cart quantity */
     const getTotalPrice = () => {
-        totalPrice.map((item) => setTotalPrice(totalPrice + item.price));
+        totalPrice.map((item) => setTotalPrice(totalPrice + (item.price * item.quantity)));
         return totalPrice;
     }
 
