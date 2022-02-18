@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   Button,
   Badge,
@@ -14,11 +14,16 @@ import {
   Text,
   Stack,
   Divider,
+  Image,
 } from '@chakra-ui/react';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
+import { CartContext } from '../context/CartContext';
 
 const CartWidget = () => {
+  const { items, totalQuantity } = useContext(CartContext);
+  console.log(totalQuantity);
+
   return (
     <Popover>
       <PopoverTrigger>
@@ -30,7 +35,7 @@ const CartWidget = () => {
         >
           <AiOutlineShoppingCart size={20}></AiOutlineShoppingCart>
           <Badge colorScheme='green' variant='solid' ml={1} fontSize='0.7em'>
-            0
+            {totalQuantity}
           </Badge>
         </Button>
       </PopoverTrigger>
@@ -42,13 +47,16 @@ const CartWidget = () => {
         </PopoverHeader>
         <PopoverBody>
           <Stack direction='column'>
-            <HStack w='full'>
-              <Text>Item 1</Text>
-            </HStack>
-            <Divider />
-            <HStack w='full'>
-              <Text>Item 2</Text>
-            </HStack>
+            {items.map((item) => (
+              <>
+                <HStack w='full' justifyContent='space-between' key={item.id}>
+                  <Image src={item.pictureUrl} boxSize='60px' objectFit='cover' />
+                  <Text>{item.title}</Text>
+                  <Badge colorScheme='teal'>{item.quantity}</Badge>
+                </HStack>
+                <Divider />
+              </>
+            ))}
           </Stack>
         </PopoverBody>
         <PopoverFooter py={3}>
@@ -61,7 +69,7 @@ const CartWidget = () => {
               w='full'
               _hover={{
                 bgGradient: 'linear(to-r, #fbab7e, #f7ce68)',
-                boxShadow: 'md'
+                boxShadow: 'md',
               }}
             >
               Ver carrito
