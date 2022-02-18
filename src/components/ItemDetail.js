@@ -27,14 +27,26 @@ const ItemDetail = ({ item }) => {
   const onAdd = (cant) => {
     setQuantity(cant);
     setIsAdded(true);
-    addItem(item, cant);
-    toast({
-      title: 'Producto agregago',
-      description: 'Se ha agregado al carrito!',
-      status: 'success',
-      duration: 5000,
-      isClosable: true,
-    });
+    try {
+      addItem(product, cant);
+      toast({
+        title: 'Producto agregado',
+        description: 'Se ha agregado al carrito!',
+        status: 'success',
+        duration: 5000,
+        isClosable: true,
+      });
+    } catch (error) {
+      console.error(error)
+      toast({
+        title: 'Error al agregar producto',
+        description: `${error.message}`,
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
+    }
+    
   };
 
   /** Logueo la cantidad cuando se dispara evento click en itemCount */

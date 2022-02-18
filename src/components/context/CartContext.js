@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 
 export const CartContext = createContext();
 
@@ -13,59 +13,69 @@ export const CartProvider = ({ children }) => {
   const [totalQuantity, setTotalQantity] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
 
+  /** Función que updatea los valores de totalQuantity y totalPrice */
+  function updateValues() {
+    let priceAcum = items.reduce((total, item) => {
+      return (total += item.price * item.quantity);
+    }, 0);
+    priceAcum = parseFloat(priceAcum.toFixed(2));
+    setTotalPrice(priceAcum);
+
+    let quantityAcum = items.reduce((total, item) => {
+      return (total += item.quantity);
+    }, 0);
+    setTotalQantity(quantityAcum);
+  }
+
+  useEffect(updateValues, [items]);
+
   const addItem = (item, cant) => {
     const index = isInCart(item);
-    if (index > -1) {
-      //Si el item ya está en el carrito
-      let updatedITems = [...items];
-      updatedITems[index].quantity += cant;
-      if (updatedITems[index].quantity > updatedITems[index].stock) {
-        throw new Error(
-          `La cantidad elegida no puede superar el stock (${updatedITems[index].stock})`
-        );
-      } else {
-        setItems(updatedITems);
-      }
+    const updatedItems = [...items];
+    if (index < 0) {
+      updatedItems.push({...item, quantity: cant});
     } else {
-      //Si el item no está en el carrito
-      const newItem = {...item};
-      newItem.quantity = cant;
-    //   console.log(newItem);
-      setItems(...items, newItem);
+      const updatedItem = {...updatedItems[index]};
+      updatedItem.quantity += cant;
+      updatedItems[index] = updatedItem;
     }
+    setItems(updatedItems);
   };
 
   const removeItem = (itemToRemove) => {
-    const filteredItems = items.filter((item) => item.id !== itemToRemove.id);
-    setItems(filteredItems);
+    const updatedItems = [...items];
+    const index = isInCart(itemToRemove);
+    const updatedItem = {...updatedItems[index]};
+    updatedItem.quantity--;
+    if (updatedItem.quantity <= 0) {
+      updatedItems.splice(index, 1);
+    } else {
+      updatedItems[index] = updatedItem;
+    }
+    setItems(updatedItems);
   };
 
+  /**
+   * Función para hallar el índice de un item en el arreglo de items
+   * @param {*} newItem 
+   * @returns {int}
+   */
   const isInCart = (newItem) => {
-    const itemFinded = items.filter((i) => i.id === newItem.id);
+    const itemFinded = items.find((i) => i.id === newItem.id);
     return items.indexOf(itemFinded);
   };
 
   const clearCart = () => {
     setItems([]);
+    setTotalPrice(0);
+    setTotalQantity(0);
   };
 
-  /** Get total cart quantity */
-  const getTotalPrice = () => {
-    totalPrice.map((item) => setTotalPrice(totalPrice + item.price * item.quantity));
-    return totalPrice;
-  };
-
-  /** Get total cart price */
-  const getTotalQuantity = () => {
-    totalQuantity.map((item) => setTotalQantity(totalQuantity + item.quantity));
-    return totalQuantity;
-  };
-
-  console.log(items)
+  console.log(items, totalPrice, totalQuantity);
 
   return (
     <CartContext.Provider
-      value={{ items, addItem, removeItem, clearCart, getTotalPrice, getTotalQuantity }}
+      value={{ items, addItem, removeItem, clearCart, totalPrice, totalQuantity }}
     >
       {children}
     </CartContext.Provider>
