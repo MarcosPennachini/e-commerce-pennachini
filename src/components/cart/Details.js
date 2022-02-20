@@ -64,7 +64,7 @@ const Details = () => {
           <Checkbox defaultChecked>Enviar al domicilio especificado.</Checkbox>
         </GridItem>
         <GridItem colSpan={2}>
-          <Button colorScheme='green' size='lg' w='full' onClick={confirmCart}>
+          <Button colorScheme='green' size='lg' w='full'>
             Comprar
           </Button>
         </GridItem>
