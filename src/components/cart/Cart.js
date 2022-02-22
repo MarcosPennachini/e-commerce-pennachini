@@ -15,22 +15,19 @@ import {
   AlertDescription,
   VisuallyHidden,
   IconButton,
+  ButtonGroup,
 } from '@chakra-ui/react';
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../context/CartContext';
 import addToCartSvg from '../../assets/img/Add to Cart-amico.svg';
-import { AiOutlineDelete, AiOutlineMinus } from 'react-icons/ai';
+import { AiOutlineDelete, AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 
 const Cart = () => {
   const bgColor = useColorModeValue('gray.50', 'whiteAlpha.50');
   const secondaryTextColor = useColorModeValue('gray.600', 'gray.400');
-  const { items, totalPrice, removeItem } = useContext(CartContext);
+  const { items, totalPrice, removeItem, addItem } = useContext(CartContext);
   const shipping = 580.99;
-
-  const onRemove = (item) => {
-    removeItem(item);
-  };
 
   if (items.length === 0) {
     return (
@@ -88,13 +85,30 @@ const Cart = () => {
             colorScheme='red'
             icon={<AiOutlineDelete />}
           ></IconButton>
-          <IconButton
-            size='xs'
-            variant='outline'
-            icon={<AiOutlineMinus />}
-            onClick={() => onRemove(item)}
-          />
-          <Badge colorScheme='teal'>{item.quantity}</Badge>
+          <ButtonGroup size='xs' isAttached>
+            <IconButton
+              size='xs'
+              variant='outline'
+              icon={<AiOutlineMinus />}
+              onClick={() => removeItem(item)}
+            />
+            {/* <Badge colorScheme='teal'>{item.quantity}</Badge> */}
+            <Button
+              variant='outline'
+              _hover={{
+                cursor: 'default',
+              }}
+            >
+              {item.quantity}
+            </Button>
+            <IconButton
+              size='xs'
+              variant='outline'
+              icon={<AiOutlinePlus />}
+              onClick={() => addItem(item, 1)}
+            />
+          </ButtonGroup>
+
           <Text>${parseFloat(item.price.toFixed(2))}</Text>
         </HStack>
       ))}
