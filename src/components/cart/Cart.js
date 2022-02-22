@@ -1,24 +1,75 @@
 import {
   VStack,
   HStack,
-  Stack,
   Divider,
-  Heading,
   Text,
   Button,
-  AspectRatio,
   Image,
   useColorModeValue,
   Badge,
+  Alert,
+  AlertIcon,
+  Box,
+  Flex,
+  AlertTitle,
+  AlertDescription,
+  VisuallyHidden,
+  IconButton,
 } from '@chakra-ui/react';
 import { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { CartContext } from '../context/CartContext';
+import addToCartSvg from '../../assets/img/Add to Cart-amico.svg';
+import { AiOutlineDelete, AiOutlineMinus } from 'react-icons/ai';
 
 const Cart = () => {
   const bgColor = useColorModeValue('gray.50', 'whiteAlpha.50');
   const secondaryTextColor = useColorModeValue('gray.600', 'gray.400');
-  const { items, totalPrice, totalQuantity } = useContext(CartContext);
+  const { items, totalPrice, removeItem } = useContext(CartContext);
   const shipping = 580.99;
+
+  const onRemove = (item) => {
+    removeItem(item);
+  };
+
+  if (items.length === 0) {
+    return (
+      <VStack w='full' height='auto' p={10} spacing={6} alignItems='flex-start' bg={bgColor}>
+        <VStack alignItems='flex-start' spacing={3}>
+          <Text fontSize='4xl' fontWeight='900'>
+            Tu carrito
+          </Text>
+        </VStack>
+        <Alert
+          status='warning'
+          flexDirection='column'
+          alignItems='center'
+          justifyContent='center'
+          textAlign='center'
+          borderRadius={4}
+        >
+          <AlertIcon mr={0} boxSize='25px' />
+          <AlertTitle mt={3} mb={1} fontSize='lg'>
+            Ups! Parece que tu carrito está vacío
+          </AlertTitle>
+          <AlertDescription maxWidth='sm'>Agrega productos para comprar</AlertDescription>
+          <Link to='/'>
+            <Button variant='ghost' colorScheme='yellow'>
+              Ir a productos
+            </Button>
+          </Link>
+        </Alert>
+        <Flex w='full' alignItems='center' justifyContent='center'>
+          <Box>
+            <Image src={addToCartSvg} boxSize='250px' borderRadius={4} />
+            <VisuallyHidden>
+              <a href='https://storyset.com/online'>Online illustrations by Storyset</a>
+            </VisuallyHidden>
+          </Box>
+        </Flex>
+      </VStack>
+    );
+  }
 
   return (
     <VStack w='full' p={10} spacing={6} alignItems='flex-start' bg={bgColor}>
@@ -31,24 +82,36 @@ const Cart = () => {
         <HStack key={item.id} spacing={6} alignItems='center' w='full'>
           <Image src={item.pictureUrl} boxSize='60px' objectFit='cover' />
           <Text>{item.title}</Text>
+          <IconButton
+            size='xs'
+            variant='outline'
+            colorScheme='red'
+            icon={<AiOutlineDelete />}
+          ></IconButton>
+          <IconButton
+            size='xs'
+            variant='outline'
+            icon={<AiOutlineMinus />}
+            onClick={() => onRemove(item)}
+          />
           <Badge colorScheme='teal'>{item.quantity}</Badge>
-          <Text >${ parseFloat(item.price.toFixed(2)) }</Text>
+          <Text>${parseFloat(item.price.toFixed(2))}</Text>
         </HStack>
       ))}
       <VStack spacing={4} alignItems='stretch' w='full'>
         <HStack justifyContent='space-between'>
           <Text color={secondaryTextColor}>Subtotal</Text>
-          <Text >${parseFloat(totalPrice.toFixed(2))}</Text>
+          <Text>${parseFloat(totalPrice.toFixed(2))}</Text>
         </HStack>
         <HStack justifyContent='space-between'>
           <Text color={secondaryTextColor}>Envío</Text>
-          <Text >${ parseFloat(shipping.toFixed(2)) }</Text>
+          <Text>${parseFloat(shipping.toFixed(2))}</Text>
         </HStack>
       </VStack>
       <Divider />
       <HStack justifyContent='space-between' w='full'>
         <Text color={secondaryTextColor}>Total</Text>
-        <Text fontWeight='900'>${ totalPrice + shipping }</Text>
+        <Text fontWeight='900'>${totalPrice + shipping}</Text>
       </HStack>
     </VStack>
   );
