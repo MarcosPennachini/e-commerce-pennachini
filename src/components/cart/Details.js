@@ -1,6 +1,5 @@
 import {
   VStack,
-  Heading,
   Text,
   SimpleGrid,
   GridItem,
@@ -12,10 +11,12 @@ import {
   Button,
   useBreakpointValue,
 } from '@chakra-ui/react';
-import Reward from 'react-rewards';
+import { useContext } from 'react';
+import { CartContext } from '../context/CartContext';
 
 const Details = () => {
   const colSpan = useBreakpointValue({ base: 2, md: 1 });
+  const { items } = useContext(CartContext);
 
   return (
     <VStack w='full' h='full' p={10} spacing={10} alignItems='flex-start'>
@@ -35,6 +36,12 @@ const Details = () => {
           <FormControl>
             <FormLabel>Apellido</FormLabel>
             <Input placeholder='Doe'></Input>
+          </FormControl>
+        </GridItem>
+        <GridItem colSpan={2}>
+          <FormControl>
+            <FormLabel>Email</FormLabel>
+            <Input placeholder='johndoe@email.com'></Input>
           </FormControl>
         </GridItem>
         <GridItem colSpan={2}>
@@ -63,11 +70,13 @@ const Details = () => {
         <GridItem colSpan={colSpan}>
           <Checkbox defaultChecked>Enviar al domicilio especificado.</Checkbox>
         </GridItem>
-        <GridItem colSpan={2}>
-          <Button colorScheme='green' size='lg' w='full'>
-            Comprar
-          </Button>
-        </GridItem>
+        {items.length > 0 && (
+          <GridItem colSpan={2}>
+            <Button colorScheme='green' size='lg' w='full'>
+              Terminar mi compra
+            </Button>
+          </GridItem>
+        )}
       </SimpleGrid>
     </VStack>
   );

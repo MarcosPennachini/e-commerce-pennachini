@@ -5,9 +5,9 @@ import Details from './Details'
 
 const CartDetail = () => {
   return (
-    <Container maxWidth='container.lg' padding={0}>
+    <Container maxWidth='container.xl' padding={0}>
       <Flex
-        h={{ base: 'auto', md: '100vh' }}
+        h={{ base: 'auto', md: 'auto' }}
         py={[0, 10, 20]}
         direction={{ base: 'column-reverse', md: 'row' }}
       >
