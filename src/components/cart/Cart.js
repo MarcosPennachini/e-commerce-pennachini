@@ -26,7 +26,7 @@ import { AiOutlineDelete, AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 const Cart = () => {
   const bgColor = useColorModeValue('gray.50', 'whiteAlpha.50');
   const secondaryTextColor = useColorModeValue('gray.600', 'gray.400');
-  const { items, totalPrice, removeItem, addItem } = useContext(CartContext);
+  const { items, totalPrice, removeItem, addItem, deleteItem } = useContext(CartContext);
   const shipping = 580.99;
 
   if (items.length === 0) {
@@ -76,7 +76,7 @@ const Cart = () => {
         </Text>
       </VStack>
       {items.map((item) => (
-        <HStack key={item.id} spacing={6} alignItems='center' w='full'>
+        <HStack key={item.id} spacing={6} alignItems='center' justifyContent='space-between' w='full'>
           <Image src={item.pictureUrl} boxSize='60px' objectFit='cover' />
           <Text>{item.title}</Text>
           <IconButton
@@ -84,6 +84,7 @@ const Cart = () => {
             variant='outline'
             colorScheme='red'
             icon={<AiOutlineDelete />}
+            onClick={() => deleteItem(item)}
           ></IconButton>
           <ButtonGroup size='xs' isAttached>
             <IconButton

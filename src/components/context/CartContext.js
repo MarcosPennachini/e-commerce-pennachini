@@ -2,12 +2,6 @@ import { createContext, useEffect, useState } from 'react';
 
 export const CartContext = createContext();
 
-// const INITIAL_STATE = {
-//     items: [],
-//     totalQuantity: 0,
-//     totalPrice: 0
-// }
-
 export const CartProvider = ({ children }) => {
   const [items, setItems] = useState([]);
   const [totalQuantity, setTotalQantity] = useState(0);
@@ -55,6 +49,18 @@ export const CartProvider = ({ children }) => {
     setItems(updatedItems);
   };
 
+  const deleteItem = (itemToDelete) => {
+    const index = isInCart(itemToDelete);
+    const updatedItems = [...items];
+    if (index < 0) {
+      throw new Error('Ups! No se pudo eliminar el item :(');
+      console.error(itemToDelete, index);
+    } else {
+      updatedItems.splice(index, 1);
+    }
+    setItems(updatedItems);
+  }
+
   /**
    * Función para hallar el índice de un item en el arreglo de items
    * @param {*} newItem 
@@ -75,7 +81,7 @@ export const CartProvider = ({ children }) => {
 
   return (
     <CartContext.Provider
-      value={{ items, addItem, removeItem, clearCart, totalPrice, totalQuantity }}
+      value={{ items, addItem, removeItem, deleteItem, clearCart, totalPrice, totalQuantity }}
     >
       {children}
     </CartContext.Provider>
