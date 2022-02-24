@@ -53,8 +53,8 @@ export const CartProvider = ({ children }) => {
     const index = isInCart(itemToDelete);
     const updatedItems = [...items];
     if (index < 0) {
+      console.log(itemToDelete, index);
       throw new Error('Ups! No se pudo eliminar el item :(');
-      console.error(itemToDelete, index);
     } else {
       updatedItems.splice(index, 1);
     }
@@ -63,7 +63,7 @@ export const CartProvider = ({ children }) => {
 
   /**
    * Función para hallar el índice de un item en el arreglo de items
-   * @param {*} newItem 
+   * @param {object} newItem 
    * @returns {int}
    */
   const isInCart = (newItem) => {

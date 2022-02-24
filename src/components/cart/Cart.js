@@ -6,7 +6,6 @@ import {
   Button,
   Image,
   useColorModeValue,
-  Badge,
   Alert,
   AlertIcon,
   Box,
@@ -20,7 +19,6 @@ import {
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../context/CartContext';
-import addToCartSvg from '../../assets/img/Add to Cart-amico.svg';
 import { AiOutlineDelete, AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 
 const Cart = () => {
@@ -58,7 +56,7 @@ const Cart = () => {
         </Alert>
         <Flex w='full' alignItems='center' justifyContent='center'>
           <Box>
-            <Image src={addToCartSvg} boxSize='250px' borderRadius={4} />
+            <Image src='https://i.imgur.com/f7MqzK0.png' boxSize='250px' borderRadius={4} />
             <VisuallyHidden>
               <a href='https://storyset.com/online'>Online illustrations by Storyset</a>
             </VisuallyHidden>
