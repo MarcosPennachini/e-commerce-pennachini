@@ -3,7 +3,7 @@ import React from 'react';
 import Item from './Item';
 // import ItemCount from './ItemCount';
 
-const ItemList = ({ items}) => {
+const ItemList = ({items}) => {
   const itemBackground = useColorModeValue('gray.50', 'gray.700');
   // const toast = useToast();
   // const [filteredItems, setFilteredItems] = useState([]);
