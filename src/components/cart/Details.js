@@ -27,44 +27,45 @@ const Details = () => {
       </VStack>
       <SimpleGrid columns={2} columnGap={3} rowGap={6} w='full'>
         <GridItem colSpan={colSpan}>
-          <FormControl>
+          <FormControl isRequired>
             <FormLabel>Nombre</FormLabel>
             <Input placeholder='John'></Input>
           </FormControl>
         </GridItem>
         <GridItem colSpan={colSpan}>
-          <FormControl>
+          <FormControl isRequired>
             <FormLabel>Apellido</FormLabel>
             <Input placeholder='Doe'></Input>
           </FormControl>
         </GridItem>
-        <GridItem colSpan={2}>
-          <FormControl>
+        <GridItem colSpan={colSpan}>
+          <FormControl isRequired>
             <FormLabel>Email</FormLabel>
             <Input placeholder='johndoe@email.com'></Input>
           </FormControl>
         </GridItem>
-        <GridItem colSpan={2}>
+        <GridItem colSpan={colSpan}>
           <FormControl>
+            <FormLabel>Tel&eacute;fono</FormLabel>
+            <Input placeholder='343555555'></Input>
+          </FormControl>
+        </GridItem>
+        <GridItem colSpan={2}>
+          <FormControl isRequired>
             <FormLabel>Domicilio</FormLabel>
             <Input placeholder='San Martin 330'></Input>
           </FormControl>
         </GridItem>
         <GridItem colSpan={colSpan}>
-          <FormControl>
+          <FormControl isRequired>
             <FormLabel>Ciudad</FormLabel>
             <Input placeholder='Santa Fe'></Input>
           </FormControl>
         </GridItem>
         <GridItem colSpan={colSpan}>
-          <FormControl>
-            <FormLabel>Pa&iacute;s</FormLabel>
-            <Select>
-              <option value='arg'>Argentina</option>
-              <option value='usa'>Estados Unidos</option>
-              <option value='uy'>Uruguay</option>
-              <option value='chi'>Chile</option>
-            </Select>
+          <FormControl isRequired>
+            <FormLabel>C&oacute;digo postal</FormLabel>
+            <Input placeholder='3100'></Input>
           </FormControl>
         </GridItem>
         <GridItem colSpan={colSpan}>
