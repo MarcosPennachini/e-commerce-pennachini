@@ -21,11 +21,10 @@ import { Link } from 'react-router-dom';
 import { CartContext } from '../context/CartContext';
 import { AiOutlineDelete, AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 
-const Cart = () => {
+const Cart = ({shipping}) => {
   const bgColor = useColorModeValue('gray.50', 'whiteAlpha.50');
   const secondaryTextColor = useColorModeValue('gray.600', 'gray.400');
   const { items, totalPrice, removeItem, addItem, deleteItem } = useContext(CartContext);
-  const shipping = 580.99;
 
   if (items.length === 0) {
     return (
@@ -118,7 +117,7 @@ const Cart = () => {
         </HStack>
         <HStack justifyContent='space-between'>
           <Text color={secondaryTextColor}>Envío</Text>
-          <Text>${parseFloat(shipping.toFixed(2))}</Text>
+          <Text>${shipping}</Text>
         </HStack>
       </VStack>
       <Divider />

@@ -13,13 +13,15 @@ import {
   useBreakpointValue,
 } from '@chakra-ui/react';
 import { useFormik } from 'formik';
-import { useContext } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { CartContext } from '../context/CartContext';
+import { getFirestore, addDoc, collection, Timestamp } from 'firebase/firestore';
 
-const Details = () => {
+const Details = ({ shipping }) => {
   const colSpan = useBreakpointValue({ base: 2, md: 1 });
-  const { items } = useContext(CartContext);
   const toast = useToast();
+  const { items, totalPrice } = useContext(CartContext);
+  const [orderId, setOrderID] = useState(null);
 
   const validate = (values) => {
     const errors = {};
@@ -35,6 +37,10 @@ const Details = () => {
       errors.email = 'El campo email es requerido';
     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
       errors.email = 'Email no válido!';
+    }
+
+    if (!values.phone) {
+      errors.phone = 'El campo teléfono es requerido';
     }
 
     if (!values.address) {
@@ -64,17 +70,47 @@ const Details = () => {
     },
     validate,
     onSubmit: (values) => {
-      // alert(JSON.stringify(values, null, 2));
-      console.log(JSON.stringify(values, null, 2));
-      toast({
-        title: '¡Compra realizada! 😃',
-        description: 'La compra se ha registrado correctamente',
-        status: 'success',
-        duration: 5000,
-        isClosable: true,
-      });
+      const order = {
+        buyer: {
+          name: values.firstName,
+          surName: values.surName,
+          email: values.email,
+          phone: values.phone,
+        },
+        items: items,
+        total: totalPrice + shipping,
+        date: Timestamp.fromDate(new Date()),
+      };
+      console.log(order);
+      sendOrder(order);
     },
   });
+
+  const sendOrder = (order) => {
+    const db = getFirestore();
+    const ordersCollection = collection(db, 'orders');
+    addDoc(ordersCollection, order)
+      .then((id) => {
+        setOrderID(id);
+        toast({
+          title: '¡Felicitaciones! 😃',
+          description: 'Su compra se ha realizado con éxito!',
+          status: 'success',
+          duration: 5000,
+          isClosable: true,
+        });
+      })
+      .catch((error) => {
+        toast({
+          title: 'Error!',
+          description: 'Ocurrió un error al confirmar el pedido 😫',
+          status: 'error',
+          duration: 3500,
+          isClosable: true,
+        });
+        console.error(error);
+      });
+  };
 
   return (
     <VStack w='full' h='full' p={10} spacing={10} alignItems='flex-start'>

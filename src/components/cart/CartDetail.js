@@ -4,6 +4,7 @@ import Cart from './Cart'
 import Details from './Details'
 
 const CartDetail = () => {
+  const shippingCosts = 580.99;
   return (
     <Container maxWidth='container.xl' padding={0}>
       <Flex
@@ -11,8 +12,8 @@ const CartDetail = () => {
         py={[0, 10, 20]}
         direction={{ base: 'column-reverse', md: 'row' }}
       >
-        <Details />
-        <Cart />
+        <Details shipping={shippingCosts} />
+        <Cart shipping={shippingCosts}/>
       </Flex>
     </Container>
   )
