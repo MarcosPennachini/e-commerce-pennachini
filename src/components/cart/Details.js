@@ -13,7 +13,7 @@ import {
   useBreakpointValue,
 } from '@chakra-ui/react';
 import { useFormik } from 'formik';
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useState} from 'react';
 import { CartContext } from '../context/CartContext';
 import { getFirestore, addDoc, collection, Timestamp } from 'firebase/firestore';
 
@@ -99,6 +99,7 @@ const Details = ({ shipping }) => {
           duration: 5000,
           isClosable: true,
         });
+        console.log(orderId);
       })
       .catch((error) => {
         toast({

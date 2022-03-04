@@ -15,6 +15,7 @@ import {
   VisuallyHidden,
   IconButton,
   ButtonGroup,
+  useToast
 } from '@chakra-ui/react';
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
@@ -25,6 +26,21 @@ const Cart = ({shipping}) => {
   const bgColor = useColorModeValue('gray.50', 'whiteAlpha.50');
   const secondaryTextColor = useColorModeValue('gray.600', 'gray.400');
   const { items, totalPrice, removeItem, addItem, deleteItem } = useContext(CartContext);
+  const toast = useToast();
+
+  const onAdd = (i, c) => {
+    try {
+      addItem(i, c);
+    } catch (error) {
+      toast({
+        title: 'Error al agregar producto',
+        description: `${error.message}`,
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
+    }
+  }
 
   if (items.length === 0) {
     return (
@@ -103,7 +119,7 @@ const Cart = ({shipping}) => {
               size='xs'
               variant='outline'
               icon={<AiOutlinePlus />}
-              onClick={() => addItem(item, 1)}
+              onClick={() => onAdd(item, 1)}
             />
           </ButtonGroup>
 
