@@ -30,8 +30,12 @@ export const CartProvider = ({ children }) => {
       updatedItems.push({...item, quantity: cant});
     } else {
       const updatedItem = {...updatedItems[index]};
-      updatedItem.quantity += cant;
-      updatedItems[index] = updatedItem;
+      if ((updatedItem.quantity + cant) > updatedItem.stock) {
+        throw new Error('La cantidad del mismo artículo no puede superar el stock disponible!');
+      } else {
+        updatedItem.quantity += cant;
+        updatedItems[index] = updatedItem;
+      }
     }
     setItems(updatedItems);
   };
