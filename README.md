@@ -13,6 +13,7 @@ Proyecto de e-commerce de **Funko Pops** para curso de ReactJS en _CODERHOUSE_.
 - Chakra UI
 - Fontsource
 - React icons
+- Formik
 
 ---
 
