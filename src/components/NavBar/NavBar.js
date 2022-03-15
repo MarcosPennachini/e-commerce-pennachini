@@ -72,7 +72,7 @@ const NavBar = () => {
                 Productos
               </Button>
             </Link>
-            <Menu>
+            <Menu w='full'>
               <MenuButton
                 as={Button}
                 variant='ghost'
@@ -82,7 +82,7 @@ const NavBar = () => {
               >
                 Categor&iacute;as
               </MenuButton>
-              <MenuList width={{ base: 'full', md: 'auto' }}>
+              <MenuList width={{ base: 'full', md: 'auto' }} bg={{base: bgColor, md: 'transparent'}} >
                 <Link to={`/category/1`}>
                   <MenuItem>
                     <FcClapperboard /> Pel&iacute;culas y TV
@@ -95,9 +95,9 @@ const NavBar = () => {
                 </Link>
               </MenuList>
             </Menu>
-            <Button variant='ghost' colorScheme='red' width={{ base: 'full', md: 'auto' }}>
+            {/* <Button variant='ghost' colorScheme='red' width={{ base: 'full', md: 'auto' }}>
               Contacto
-            </Button>
+            </Button> */}
             <CartWidget />
             <Box onClick={toggleColorMode}>
               <ColorModeToggle isDark={isDark} toggleColorModeIcon={toggleColorModeIcon} />
