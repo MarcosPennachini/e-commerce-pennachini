@@ -14,6 +14,7 @@ Proyecto de e-commerce de **Funko Pops** para curso de ReactJS en _CODERHOUSE_.
 - Fontsource
 - React icons
 - Formik
+- Firebase
 
 ---
 
