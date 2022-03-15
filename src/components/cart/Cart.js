@@ -1,6 +1,7 @@
 import {
   VStack,
   HStack,
+  Stack,
   Divider,
   Text,
   Button,
@@ -15,14 +16,14 @@ import {
   VisuallyHidden,
   IconButton,
   ButtonGroup,
-  useToast
+  useToast,
 } from '@chakra-ui/react';
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../context/CartContext';
 import { AiOutlineDelete, AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 
-const Cart = ({shipping}) => {
+const Cart = ({ shipping }) => {
   const bgColor = useColorModeValue('gray.50', 'whiteAlpha.50');
   const secondaryTextColor = useColorModeValue('gray.600', 'gray.400');
   const { items, totalPrice, removeItem, addItem, deleteItem } = useContext(CartContext);
@@ -40,7 +41,7 @@ const Cart = ({shipping}) => {
         isClosable: true,
       });
     }
-  }
+  };
 
   if (items.length === 0) {
     return (
@@ -89,42 +90,51 @@ const Cart = ({shipping}) => {
         </Text>
       </VStack>
       {items.map((item) => (
-        <HStack key={item.id} spacing={6} alignItems='center' justifyContent='space-between' w='full'>
+        <Stack
+          key={item.id}
+          spacing={6}
+          alignItems='center'
+          justifyContent='space-between'
+          w='full'
+          direction={{ base: 'column', md: 'row' }}
+        >
           <Image src={item.pictureUrl} boxSize='60px' objectFit='cover' />
           <Text>{item.title}</Text>
-          <IconButton
-            size='xs'
-            variant='outline'
-            colorScheme='red'
-            icon={<AiOutlineDelete />}
-            onClick={() => deleteItem(item)}
-          ></IconButton>
-          <ButtonGroup size='xs' isAttached>
+          <HStack>
             <IconButton
               size='xs'
               variant='outline'
-              icon={<AiOutlineMinus />}
-              onClick={() => removeItem(item)}
-            />
-            {/* <Badge colorScheme='teal'>{item.quantity}</Badge> */}
-            <Button
-              variant='outline'
-              _hover={{
-                cursor: 'default',
-              }}
-            >
-              {item.quantity}
-            </Button>
-            <IconButton
-              size='xs'
-              variant='outline'
-              icon={<AiOutlinePlus />}
-              onClick={() => onAdd(item, 1)}
-            />
-          </ButtonGroup>
+              colorScheme='red'
+              icon={<AiOutlineDelete />}
+              onClick={() => deleteItem(item)}
+            ></IconButton>
+            <ButtonGroup size='xs' isAttached>
+              <IconButton
+                size='xs'
+                variant='outline'
+                icon={<AiOutlineMinus />}
+                onClick={() => removeItem(item)}
+              />
+              {/* <Badge colorScheme='teal'>{item.quantity}</Badge> */}
+              <Button
+                variant='outline'
+                _hover={{
+                  cursor: 'default',
+                }}
+              >
+                {item.quantity}
+              </Button>
+              <IconButton
+                size='xs'
+                variant='outline'
+                icon={<AiOutlinePlus />}
+                onClick={() => onAdd(item, 1)}
+              />
+            </ButtonGroup>
 
-          <Text>${parseFloat(item.price.toFixed(2))}</Text>
-        </HStack>
+            <Text>${parseFloat(item.price.toFixed(2))}</Text>
+          </HStack>
+        </Stack>
       ))}
       <VStack spacing={4} alignItems='stretch' w='full'>
         <HStack justifyContent='space-between'>
